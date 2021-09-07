@@ -17,7 +17,7 @@
         @endif
         {{-- <a href="" class="btn btn-primary"><i class="fas fa-plush"></i> Tambah Data</a>     --}}
         <hr>
-        <table class="table">
+        <table class="table" id="myTable">
             <thead>
                 <tr>
                     <th>No</th>
@@ -36,7 +36,7 @@
                 @foreach ($pengaduan as $no => $item)
                 <tr>
                     <td>{{$no+1}}</td>
-                    <td>{{$item->nama}}</td>
+                    <td>{{$item->nama_lengkap}}</td>
                     <td>{{$item->tanggal_lahir}}</td>
                     {{-- <td>{{$item->jenis_kelamin}}</td> --}}
                     <td>{{$item->kewarganegaraan}}</td>
@@ -52,7 +52,7 @@
                     <td>Sepatan</td>
                     <td>
                         <a href="{{url('dataPengaduan/hapus/' . $item->id_pengaduan)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Di Hapus')"><i class="fas fa-trash"></i></a>
-                        <a href="{{url('dataPengaduan/edit/' . $item->id_pengaduan)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                        {{-- <a href="{{url('dataPengaduan/edit/' . $item->id_pengaduan)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
                         <a href="{{url('dataPengaduan/detail/' . $item->id_pengaduan)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>                    

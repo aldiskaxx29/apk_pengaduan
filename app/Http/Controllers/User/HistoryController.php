@@ -17,9 +17,10 @@ class HistoryController extends Controller
     public function index()
     {
         // {{Auth::user()->username}}
-        $user = Auth::user()->nama_lengkap;
+        $id = Auth::user()->id;
         // dd($user);
-        $history =  DB::table('tb_pengaduan')->where('nama',$user)->get();
+        $history =  DB::table('tb_pengaduan')->where('user_id',$id)->join('users','users.id','=','tb_pengaduan.user_id')->get();
+        
         return view('user.history_pengaduan.index', compact('history'));
     }
 

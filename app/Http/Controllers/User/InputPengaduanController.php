@@ -16,7 +16,11 @@ class InputPengaduanController extends Controller
      */
     public function index()
     {
-        $nama = Auth::user()->nama_lengkap;
+        // $user = DB::table('users')->join('tb_pengduan','users.id','=','etb_pengdauan.id_user')->get();
+
+        // $nama = Auth::user()->nama_lengkap;
+        $id = Auth::user()->id;
+        $nama = DB::table('users')->where('id', $id)->first();
         return view('user.input_pengaduan.index', compact('nama'));
     }
 
@@ -39,8 +43,9 @@ class InputPengaduanController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $id = Auth::user()->id;
         $request->validate([
-            'nama'            => 'required',
+            // 'nama'            => 'required',
             'tempat'          => 'required',
             'tanggal_lahir'   => 'required',
             'jenis_kelamin'   => 'required',
@@ -49,6 +54,8 @@ class InputPengaduanController extends Controller
             'alamat'          => 'required',
             'keterangan'      => 'required',
             'gambar'          => 'mimes:jpeg,png,jpg|max:2048',
+            'tanggal_kejadian'=> 'required',
+            'tempat_kejadian' => 'required',
         ]);
 
         $imgName = $request->gambar->getClientOriginalName() . '-' .time() . '.' . $request->gambar->extension();
@@ -56,7 +63,8 @@ class InputPengaduanController extends Controller
 
 
         DB::table('tb_pengaduan')->insert([
-            'nama' => $request->nama,
+            // 'nama' => $request->nama,
+            'user_id' => $id,
             'tempat' => $request->tempat,
             'tanggal_lahir'  => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -65,7 +73,9 @@ class InputPengaduanController extends Controller
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
             'gambar' => $imgName,
-            'status' => 0
+            'status' => 0,
+            'tanggal_kejadian' => $request->tanggal_kejadian,
+            'tempat_kejadian' => $request->tempat_kejadian
         ]);
         return redirect()->route('inputPengaduan.user')->with('message','Data Berhasil Di Tambahkan');
     }

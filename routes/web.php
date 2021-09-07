@@ -74,6 +74,9 @@ Route::get('dashboard_user', function(){
 
 // });
 
+// Route::get('download_laporan/{id}','User\DashboardController@download');
+Route::get('download_laporan/{id}','User\DashboardController@download');
+
 
 //Petugas
 Route::group(['middleware' => ['cekLogin']], function(){
@@ -86,8 +89,18 @@ Route::group(['middleware' => ['cekLogin']], function(){
     Route::post('dataPengaduan/acc/{id}','Petugas\DataPengaduanController@acc')->name('dataPengaduan.acc');
 
     Route::get('dataUser','Petugas\DataUserController@index');
-    Route::get('dataUser_pegawai','Petugas\DataUserController@pegawai');
+    Route::get('dataUser_petugas','Petugas\DataUserController@petugas')->name('dataUser_petugas');    
+    Route::post('inputUser_petugas','Petugas\DataUserController@inputPetugas');
+    Route::post('editUser_petugas/{id}','Petugas\DataUserController@editPetugas');
+    Route::get('hapusUser_petugas/{id}','Petugas\DataUserController@hapusPetugas');
+
     Route::get('dataUser_user','Petugas\DataUserController@user');
+    Route::post('inputUser_user','Petugas\DataUserController@inputUser');
+    Route::post('editUser_user/{id}','Petugas\DataUserController@editUser');
+    Route::get('hapusUser_user/{id}','Petugas\DataUserController@hapusUser');
+
+    Route::get('laporan_pengaduan','Petugas\LaporanPengaduanController@index');
+    Route::post('filter_laporanPengaduan','Petugas\LaporanPengaduanController@filterLaporan')->name('filterLaporan');
 
 
 
@@ -97,11 +110,14 @@ Route::group(['middleware' => ['cekLogin']], function(){
 
     Route::get('inputPengaduan_user','User\InputPengaduanController@index')->name('inputPengaduan.user');
     Route::post('inputPengaduanForm','User\InputPengaduanController@store')->name('inputPengaduanForm');
-    Route::get('detailPengaduan/{id}/detail','User\InputPengaduanController@show')->name('detailPengaduan.user');
+
+    
     Route::get('editPengaduan_user/{id}/edit','User\InputPengaduanController@edit')->name('editPengaduan.user');
     Route::patch('updatePengaduan_user/{id}/update','User\InputPengaduanController@update')->name('updatePengaduan.user');
     Route::get('hapusPengaduan_user/{id}/hapus','User\InputPengaduanController@destroy')->name('hapusPengaduan.user');
+
     Route::get('status_Pengaduan','User\StatusPengaduanController@index')->name('status_Pengaduan.user');
+    Route::get('detailPengaduan/{id}/detail','User\StatusPengaduanController@show')->name('detailPengaduan.user');
 
     Route::get('histortPengaduan','User\HistoryController@index')->name('history_Pengaduan.user');
 

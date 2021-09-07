@@ -31,7 +31,7 @@
                 @foreach ($status as $no => $item)
                 <tr>
                     <td>{{$no + 1}}</td>
-                    <td>{{$item->nama}}</td>
+                    <td>{{$item->nama_lengkap}}</td>
                     <td>{{$item->tempat}} {{$item->tanggal_lahir}}</td>
                     <td>{{$item->jenis_kelamin}}</td>
                     <td>{{$item->pekerjaan}}</td>
@@ -49,15 +49,15 @@
                         @if ($item->status == 0)
                             <small >Belum Ada</small>
                         @elseif($item->status == 1)
-                            <a href="" class="text-center"><i class="fas fa-download" style="font-size: 24px;text-align:center;"></i></a>
+                            <a href="{{url('download_laporan/' . $item->id_pengaduan)}}" class="text-center"><i class="fas fa-download" style="font-size: 24px;text-align:center;"></i></a>
                         @elseif($item->status == 2)
                             <small>Gagal</small>
                         @endif
                     </td>
                     <td>
-                        <a href="" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a>
+                        {{-- <a href="" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a> --}}
                         <a href="" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
+                        <a href="{{route('detailPengaduan.user', $item->id_pengaduan)}}" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>                    
                 @endforeach  

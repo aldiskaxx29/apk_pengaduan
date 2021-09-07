@@ -4,9 +4,16 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class DashboardController extends Controller
 {
+    
+    // public function __construct(){
+    //     ini_set('max_execution_time', 1800);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +22,21 @@ class DashboardController extends Controller
     public function index()
     {
         return view('user.dashboard');
+    }
+
+
+    public function download($id){     
+        // $data = public_path('image\Lambang_Polri.png');
+        // dd($data);
+        // return view('user.download_laporan');
+        // $laporan = PDF::loadView('user.download_laporan', $data);
+
+        // $data['judul'] = 'Laporan PDF';
+        $data = DB::table('tb_pengaduan')->join('users','tb_pengaduan.user_id','=','users.id')->where('id_pengaduan', $id)->first();
+        // dd($user);
+        $laporan = PDF::loadView('user.download_laporan', compact('data'))->setPaper('Legal','potrait');
+        // return view('user.download_laporan');
+        return $laporan->download('Laporan.pdf');
     }
 
     /**

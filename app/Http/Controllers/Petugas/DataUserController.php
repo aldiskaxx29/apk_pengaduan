@@ -18,17 +18,73 @@ class DataUserController extends Controller
         return view('petugas.data_user.index');
     }
 
-    public function pegawai(){
+    public function petugas(){
         // $user = Auth::user()->username;
-        $pegawai = DB::table('users')->where('role_user','PETUGAS')->get();
-        // dd($pegawai);
-        return view('petugas.data_user.pegawai', compact('pegawai'));
+        $petugas = DB::table('users')->where('role_user','PETUGAS')->get();
+        // dd($petugas);
+        return view('petugas.data_user.petugas', compact('petugas'));
     }
 
+    public function inputPetugas(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'username'  => 'required|unique:users',
+            'password' => 'required|same:password-confirm',
+            'password-confirm' => 'required|same:password'
+        ]);
+
+        DB::table('users')->insert([
+            'nama_lengkap' => $request->nama_lengkap,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'role_user' => 'PETUGAS'
+        ]);
+        return redirect()->route('dataUser_petugas')->with('petugas','Data Petugas Berhasil Di Tambahakan');
+    }
+
+    public function editPetugas(Request $request, $id){
+        DB::table('users')->where('id', $id)->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('dataUser_petugas')->with('petugas','Data Petugas berhasil Di Ubah');
+        // $petugas_id = DB::table('users')->where('id', $id)->first();
+        // return view('petugas.data_user.petugas', compact('petugas_id'));
+    }
+
+    public function hapusPetugas($id){
+        // dd($id);
+        DB::table('users')->delete($id,'id');
+        return redirect()->route('dataUser_petugas')->with('petugas','Data Petugas Berhasil Di Hapus');
+    }
+
+
+
+
+
+    //User user
     public function user(){
         $user = DB::table('users')->where('role_user','USER')->get();
         return view('petugas.data_user.user', compact('user'));
     }
+
+    // public function inputUser(Request $request){
+    //     $request->validate([
+    //         'nama_lengkap' => 'requried',
+    //         'username' => 'required|unique:users',
+    //         'password' => ''
+    //     ]);
+    // }
+
+    // public function editUser(){
+
+    // }
+
+    // public function hapusUser(){
+
+    // }
 
     /**
      * Show the form for creating a new resource.

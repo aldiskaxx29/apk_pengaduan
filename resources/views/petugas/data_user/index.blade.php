@@ -12,7 +12,7 @@
             <div class="empty-state-icon">
               <i class="fas fa-user-tie"></i>
             </div>
-            <a href="dataUser_pegawai"><h2>Data Pegawai</h2></a>
+            <a href="dataUser_petugas"><h2>Data Petugas</h2></a>
           </div>
         </div>
       </div>

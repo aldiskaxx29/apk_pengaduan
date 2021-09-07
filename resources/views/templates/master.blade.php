@@ -40,24 +40,6 @@
 
           <div class="section-body">
             @yield('content')
-            {{-- <h2 class="section-title">This is Example Page</h2>
-            <p class="section-lead">This page is just an example for you to create your own page.</p>
-            <div class="card">
-              <div class="card-header">
-                <h4>Example Card</h4>
-              </div>
-              <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div class="card-footer bg-whitesmoke">
-                This is card footer
-              </div>
-            </div> --}}
           </div>
         </section>
       </div>
@@ -74,37 +56,8 @@
 
   <!-- Modal Acc Pengaduan-->
   @yield('content2')
-  {{-- @foreach ($pengaduan as $i)
-  <div class="modal fade" id="exampleModalAcc{{$i->id_pengaduan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal Acc Pengaduan</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="{{url('dataPengaduan/acc', $item->id_pengaduan)}}" method="post">
-            @csrf
-            <div class="form-group">
-              <label for="">Pengaduan</label>
-              <select name="status" id="" class="form-control">
-                <option value="">-- Pilhan --</option>
-                <option value="1">Acc</option>
-                <option value="2">Gagal</option>
-              </select>
-            </div>
-            <div class="float-right">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>    
-  @endforeach --}}
+  @yield('content3')
+ 
 
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -124,6 +77,7 @@
   <script src="{{asset('stisla-master')}}/assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
+  @stack('jq-js')
   <script>
     $(document).ready(function() {
         $('#myTable').DataTable();

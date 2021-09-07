@@ -20,12 +20,7 @@
             @csrf
             <div class="form-group">
                 <label for="">Nama Lengkap</label>
-                <input type="text" class="form-control @error('nama') is-invalid @enderror" value="{{$nama}}" name="nama" readonly>
-                @error('nama')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <input type="text" class="form-control @error('nama') is-invalid @enderror" value="{{$nama->nama_lengkap}}" readonly>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -56,13 +51,13 @@
                     <div class="form-group">
                         <label for="">Jenis Kelamin</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="L">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="Laki - laki">
                             <label class="form-check-label" for="jenis_kelamin1">
                                 Laki - laki
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="P">
+                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="Perempuan">
                             <label class="form-check-label" for="jenis_kelamin2">
                               Perempuan
                             </label>
@@ -107,13 +102,37 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Keterangan</label>
+                <label for="">Keterangan Laporan</label>
                 <textarea name="keterangan" id="" class="form-control @error('keterangan') is-invalid @enderror" cols="30" rows="10"></textarea>
                 @error('keterangan')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Tanggal Kejadian</label>
+                        <input type="date" name="tanggal_kejadian" class="form-control" @error('tanggal_kejadian') is-invalid @enderror value="{{old('tanggal_kejadian')}}">
+                        @error('tanggal_kejadian')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tempat_kejadian">Tempat Kejadian</label>
+                        <textarea name="tempat_kejadian" id="" class="form-control @error('tempat_kejadian') is-invalid @enderror" cols="30" rows="10"></textarea>
+                        @error('tempat_kejadian')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4">

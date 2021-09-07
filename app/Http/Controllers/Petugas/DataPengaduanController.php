@@ -15,7 +15,8 @@ class DataPengaduanController extends Controller
      */
     public function index()
     {
-        $pengaduan = DB::table('tb_pengaduan')->get();
+        // $pengaduan = DB::table('tb_pengaduan')->get();
+        $pengaduan = DB::table('tb_pengaduan')->join('users','tb_pengaduan.user_id','=','users.id')->get();
         return view('petugas.data_pengaduan.index', compact('pengaduan'));
     }
 
@@ -50,8 +51,9 @@ class DataPengaduanController extends Controller
     {
         // dd($id);
         // $where = DB::table('tb_pengaduan')->where($id);
-        $item = DB::table('tb_pengaduan')->where('id_pengaduan',$id)->first();        
+        $item = DB::table('tb_pengaduan')->where('id_pengaduan',$id)->join('users','tb_pengaduan.user_id','=','users.id')->first();        
         return view('petugas.data_pengaduan.detail', compact('item'));
+
     }
 
     /**
@@ -77,14 +79,14 @@ class DataPengaduanController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'nama' => 'required',
-            'tempat' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'pekerjaan' => 'required',
-            'kewarganegaraan' => 'required',
-            'alamat' => 'required',
-            'keterangan' => 'required',
+            'nama' => 'required|alpha',
+            'tempat' => 'required|alpha',
+            'tanggal_lahir' => 'required|numeric',
+            'jenis_kelamin' => 'required|alpha',
+            'pekerjaan' => 'required|alpha',
+            'kewarganegaraan' => 'required|alpha',
+            'alamat' => 'required|alpha',
+            'keterangan' => 'required|alpha',
         ]);
 
         DB::table('tb_pengaduan')->where('id_pengaduan',$id)->update([

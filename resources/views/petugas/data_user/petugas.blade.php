@@ -1,22 +1,22 @@
 @extends('templates.master')
 
-@section('title','Data User')
+@section('title','Data Petugas')
 
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        @if (session('message'))   
+        @if (session('petugas'))   
             <div class="alert alert-success alert-dismissible show fade">
                 <div class="alert-body">
                 <button class="close" data-dismiss="alert">
                     <span>×</span>
                 </button>
-                {{ session('message') }}
+                {{ session('petugas') }}
                 </div>
             </div>            
         @endif
-        {{-- <a href="" class="btn btn-primary"><i class="fas fa-plush"></i> Tambah Data</a>     --}}
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalTambah"><i class="fas fa-plush"></i> Tambah Data</a>    
         <hr>
         <table class="table">
             <thead>
@@ -30,21 +30,22 @@
                     {{-- <th>Alamat</th> --}}
                     {{-- <th>Keterngan</th>
                     <th>Gambar</th> --}}
-                    {{-- <th>Action</th> --}}
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $no => $item)
+                @foreach ($petugas as $no => $item)
                 <tr>
                     <td>{{$no+1}}</td>
                     <td>{{$item->nama_lengkap}}</td>
                     <td>{{$item->username}}</td>
                     <td>{{$item->role_user}}</td>
-                    {{-- <td>
-                        <a href="{{url('dataPengaduan/hapus/' . $item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Di Hapus')"><i class="fas fa-trash"></i></a>
-                        <a href="{{url('dataPengaduan/edit/' . $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                    <td>
+                        <a href="{{url('hapusUser_petugas/' . $item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Di Hapus')"><i class="fas fa-trash"></i></a>
+                        {{-- <a href="{{url('dataPengaduan/edit/' . $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
+                        <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModalEdit{{$item->id}}"><i class="fas fa-edit"></i></a>
                         <a href="{{url('dataPengaduan/detail/' . $item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                    </td> --}}
+                    </td>
                 </tr>                    
                 @endforeach
             </tbody>
@@ -59,13 +60,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal Tambah User</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Modal Tambah Petugas</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ url('inputUser_user') }}">
+            <form method="POST" action="{{ url('inputUser_petugas') }}">
                 @csrf
                 <div class="form-group">
                   <label for="nama">Nama Lengkap</label>
@@ -121,18 +122,18 @@
 @endsection
 
 @section('content3')
-    @foreach ($user as $item)
+    @foreach ($petugas as $item)
         <div class="modal fade" id="exampleModalEdit{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Tambah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal Tambah Petugas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ url('editUser_user', $item->id) }}">
+                    <form method="POST" action="{{ url('editUser_petugas', $item->id) }}">
                         @csrf
                         <div class="form-group">
                         <label for="nama">Nama Lengkap</label>

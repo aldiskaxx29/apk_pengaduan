@@ -54,8 +54,8 @@ class OtentikasiController extends Controller
 
     public function regist(Request $req){
         $req->validate([
-            'nama_lengkap' => 'required',
-            'username' => 'required|unique:users',
+            'nama_lengkap' => 'required|alpha',
+            'username' => 'required|unique:users|alpha_dash',
             'password' => 'required|same:password-confirm',
             'password-confirm' => 'required|same:password',
         ]);

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{asset('stisla-master')}}/assets/css/components.css">
 </head>
 
-<body>
+<body style="background: yellow">
   <div id="app">
     <section class="section">
       <div class="container mt-5">
@@ -28,8 +28,8 @@
               <img src="{{asset('stisla-master')}}/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
-            <div class="card card-primary">
-              <div class="card-header"><h4>Register</h4></div>
+            <div class="card">
+              <div class="card-header" ><h4>Register</h4></div>
 
               <div class="card-body">
                 <form method="POST" action="{{ url('regist') }}">
@@ -76,7 +76,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button type="submit" class="btn  btn-lg btn-block" style="background: yellow">
                       Register
                     </button>
                   </div>

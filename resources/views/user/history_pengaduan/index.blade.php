@@ -31,7 +31,7 @@
                 <img alt="image" src="{{asset('stisla-master')}}/assets/img/avatar/avatar-1.png">
                 <div class="article-user-details">
                     <div class="user-detail-name">
-                    <a href="#">{{$item->nama}}</a>
+                    <a href="#">{{$item->nama_lengkap}}</a>
                     </div>
                     <div class="text-job">{{$item->pekerjaan}}</div>
                 </div>

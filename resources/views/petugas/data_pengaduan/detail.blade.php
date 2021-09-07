@@ -13,7 +13,7 @@
         <table class="table table-striped">
             <tr>
                 <th>Nama</th>
-                <td>{{$item->nama}}</td>
+                <td>{{$item->nama_lengkap}}</td>
             </tr>    
             <tr>
                 <th>Tempat</th>
