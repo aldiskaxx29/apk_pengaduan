@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     // }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing
+     *  of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,13 +30,15 @@ class DashboardController extends Controller
     public function download($id){     
         // $data = public_path('image\Lambang_Polri.png');
         // dd($data);
+        // $today = Carbon::now()->isoFormat('dddd');
+        // echo $today;die;
         // return view('user.download_laporan');
         // $laporan = PDF::loadView('user.download_laporan', $data);
 
-        // $data['judul'] = 'Laporan PDF';
+        $today =  Carbon::now()->isoFormat('dddd');
         $data = DB::table('tb_pengaduan')->join('users','tb_pengaduan.user_id','=','users.id')->where('id_pengaduan', $id)->first();
         // dd($user);
-        $laporan = PDF::loadView('user.download_laporan', compact('data'))->setPaper('Legal','potrait');
+        $laporan = PDF::loadView('user.download_laporan', compact('data','today'))->setPaper('Legal','potrait');
         // return view('user.download_laporan');
         return $laporan->download('Laporan.pdf');
     }

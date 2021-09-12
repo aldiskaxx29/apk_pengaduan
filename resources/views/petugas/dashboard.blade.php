@@ -11,10 +11,10 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Dashboard Petugas</h4>
+            <h4>Welcome</h4>
           </div>
           <div class="card-body">
-           
+           {{Auth::user()->username}}
           </div>
         </div>
       </div>
@@ -26,10 +26,13 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Data Toko</h4>
+            <h4>Data Pengaduan</h4>
           </div>
           <div class="card-body">
-           
+           @php
+               $data = DB::table('tb_pengaduan')->count();
+               echo $data;
+           @endphp
           </div>
         </div>
       </div>
@@ -41,10 +44,13 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Data Oder</h4>
+            <h4>Pengaduan Di Terima</h4>
           </div>
           <div class="card-body">
-            
+            @php
+                $data = DB::table('tb_pengaduan')->where('status',1)->count();
+                echo $data;
+            @endphp
           </div>
         </div>
       </div>
@@ -56,10 +62,13 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Data User</h4>
+            <h4>Data Masyarakat</h4>
           </div>
           <div class="card-body">
-           
+           @php
+               $data = DB::table('users')->where('role_user','USER')->count();
+               echo $data;
+           @endphp
           </div>
         </div>
       </div>

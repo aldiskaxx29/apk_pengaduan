@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>-</title>
+    <title>@yield('judul')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
         .footer{
@@ -44,8 +44,8 @@
         @endphp / 202I /  Sek. Mauk.</p>
     </div>
     <div class="conten" style="text-align: left;">
-        <p>{{$data->nama_lengkap}} Yang bertanda tangan dibawah ini menerangkan bahwa pada hari {{date('l')}} Tanggal {{date('Y/m/d')}}  sekira 
-        jam {{date('h:i:s')}} Wib, Telah datang ke polsek Mauk , Mengaku Bernama: {{$data->nama_lengkap}}</p>
+        <p>-------- Yang bertanda tangan dibawah ini menerangkan bahwa pada hari {{$today}} Tanggal {{date('Y/m/d')}}  sekira 
+        jam {{date('h:i:s')}} Wib, Telah datang ke polsek Mauk , Mengaku Bernama: ----------------------------------------------------</p>
 
         <table style="margin-left: 80px;">
             <tr>
@@ -132,7 +132,7 @@
                         An. KEPALA KEPOLISIAN SEKTOR MAUK <br>
                         BA.SPK POK ‘B’<br>
                         <img src="image/pa1.png" alt="" width="100px" style="floar:left;"><br>
-                        ADI NURMANSYAH, S.H <br>
+                        <u>ADI NURMANSYAH, S.H</u> <br>
                         BRIGADIR NRP 85082085
                     </p>  
                 </th>

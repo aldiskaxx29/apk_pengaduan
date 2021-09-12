@@ -141,6 +141,18 @@
                         <input type="file" class="form-control" name="gambar" id="gambar">
                     </div>  
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="gambar2">Upload Bukti Pengaduan</label>
+                        <input type="file" class="form-control" name="gambar2" id="gambar">
+                    </div>  
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="gambar3">Upload Bukti Pengaduan</label>
+                        <input type="file" class="form-control" name="gambar3" id="gambar">
+                    </div>  
+                </div>
             </div>
             
             <button type="submit" class="btn btn-primary">Kirim</button>

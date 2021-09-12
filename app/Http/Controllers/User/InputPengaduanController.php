@@ -54,12 +54,33 @@ class InputPengaduanController extends Controller
             'alamat'          => 'required',
             'keterangan'      => 'required',
             'gambar'          => 'mimes:jpeg,png,jpg|max:2048',
+            'gambar2'          => 'mimes:jpeg,png,jpg|max:2048',
+            'gambar3'          => 'mimes:jpeg,png,jpg|max:2048',
             'tanggal_kejadian'=> 'required',
             'tempat_kejadian' => 'required',
         ]);
 
-        $imgName = $request->gambar->getClientOriginalName() . '-' .time() . '.' . $request->gambar->extension();
-        $request->gambar->move(public_path('image'), $imgName);
+        // if (!empty($_FILES['foto3']['name'])){
+        //     $this->upload->do_upload('foto3');
+        //     $data3 = $this->upload->data();
+        //     $foto3 = $data3['file_name'];
+        // }
+
+        if(!empty($request->gambar)){
+            $imgName = $request->gambar->getClientOriginalName() . '-' .time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('image'), $imgName);
+        }
+
+        if(!empty($request->gambar2)){
+            $imgName2 = $request->gambar2->getClientOriginalName() . '-' .time() . '.' . $request->gambar2->extension();
+            $request->gambar2->move(public_path('image'), $imgName2);
+        }
+
+        if(!empty($request->gambar3)){
+            $imgName3 = $request->gambar3->getClientOriginalName() . '-' .time() . '.' . $request->gambar3->extension();
+            $request->gambar3->move(public_path('image'), $imgName3);
+        }
+        
 
 
         DB::table('tb_pengaduan')->insert([
@@ -73,6 +94,8 @@ class InputPengaduanController extends Controller
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
             'gambar' => $imgName,
+            'gambar2' => $imgName2,
+            'gambar3' => $imgName3,
             'status' => 0,
             'tanggal_kejadian' => $request->tanggal_kejadian,
             'tempat_kejadian' => $request->tempat_kejadian

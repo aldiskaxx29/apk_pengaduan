@@ -43,6 +43,13 @@ class DataUserController extends Controller
         return redirect()->route('dataUser_petugas')->with('petugas','Data Petugas Berhasil Di Tambahakan');
     }
 
+    public function detail($id){
+        $item = DB::table('users')->where('id', $id)->first();
+        // $item = DB::table('tb_pengaduan')->join('users','users.id','=','tb_pengaduan.user_id')->where('id_pengaduan',$id)->first();
+        // dd($item);
+        return view('petugas.data_user.detail_petugas', compact('item'));
+    }
+
     public function editPetugas(Request $request, $id){
         DB::table('users')->where('id', $id)->update([
             'nama_lengkap' => $request->nama_lengkap,

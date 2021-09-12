@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-primary">
           <i class="far fa-user"></i>
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-danger">
           <i class="fas fa-home"></i>
@@ -29,22 +29,29 @@
             <h4>Data Pengaduan</h4>
           </div>
           <div class="card-body">
-           
+           @php
+               $user =  Auth::user()->id;
+               $data = DB::table('tb_pengaduan')->where('user_id',$user)->count();
+               echo $data;
+           @endphp
           </div>
         </div>
       </div>
     </div>
-    {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-warning">
           <i class="fas fa-users"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Data Oder</h4>
+            <h4>Data Pengdauan Acc</h4>
           </div>
           <div class="card-body">
-            
+            @php
+               $data = DB::table('tb_pengaduan')->where('status',0)->count();
+               echo $data;
+            @endphp
           </div>
         </div>
       </div>
@@ -56,13 +63,16 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Data User</h4>
+            <h4>Data Pengdauan Acc</h4>
           </div>
           <div class="card-body">
-           
+            @php
+                $data = DB::table('tb_pengaduan')->where('status',1)->count();
+                echo $data;
+            @endphp
           </div>
         </div>
       </div>
-    </div> --}}
+    </div>
   </div>
 @endsection

@@ -68,8 +68,8 @@ class StatusPengaduanController extends Controller
      */
     public function edit($id)
     {
-        $data = DB::table('tb_pengaduan')->join('users','users.id','=','tb_pengdauan.user_id')->where('id_pengaduan',$id)->first();
-        return view('user.status_pengaduan.edit', compact('data'));
+        $item = DB::table('tb_pengaduan')->join('users','users.id','=','tb_pengaduan.user_id')->where('id_pengaduan',$id)->first();
+        return view('user.status_pengaduan.edit', compact('item'));
     }
 
     /**
@@ -81,7 +81,34 @@ class StatusPengaduanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $request->validate([
+            'tempat'          => 'required',
+            'tanggal_lahir'   => 'required',
+            'jenis_kelamin'   => 'required',
+            'pekerjaan'       => 'required',
+            'kewarganegaraan' => 'required',
+            'alamat'          => 'required',
+            'keterangan'      => 'required',
+            // 'gambar'          => 'mimes:jpeg,png,jpg|max:2048',
+            'tanggal_kejadian'=> 'required',
+            'tempat_kejadian' => 'required',
+        ]);
+
+        DB::table('tb_pengaduan')->where('id_pengaduan',$id)->update([
+            'tempat' => $request->tempat,
+            'tanggal_lahir'  => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'pekerjaan' => $request->pekerjaan,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'alamat' => $request->alamat,
+            'keterangan' => $request->keterangan,
+            'tanggal_kejadian' => $request->tanggal_kejadian,
+            'tempat_kejadian' => $request->tempat_kejadian
+        ]);
+
+        return redirect('status_Pengaduan')->with('message','Data Berhasil Di Ubah');
     }
 
     /**

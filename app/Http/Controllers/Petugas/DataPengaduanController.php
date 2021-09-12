@@ -110,7 +110,8 @@ class DataPengaduanController extends Controller
      */
     public function destroy($id)
     {
-        DB::tbale('tb_pengdauan')->where('id_pengaduan',$id)->first();
+        // DB::table('tb_pengdauan')->where('id_pengaduan',$id)->first();
+        DB::table('tb_pengaduan')->where('id_pengaduan',$id)->delete();
         return redirect('dataPengaduan')->with('message','Data Berhsail Di Hapus');
     }
 

@@ -44,7 +44,7 @@
                         <a href="{{url('hapusUser_petugas/' . $item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Mau Di Hapus')"><i class="fas fa-trash"></i></a>
                         {{-- <a href="{{url('dataPengaduan/edit/' . $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
                         <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModalEdit{{$item->id}}"><i class="fas fa-edit"></i></a>
-                        <a href="{{url('dataPengaduan/detail/' . $item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                        <a href="{{url('detailUser_petugas/' . $item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>                    
                 @endforeach

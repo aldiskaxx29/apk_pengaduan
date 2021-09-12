@@ -5,6 +5,16 @@
 @section('content')
 <div class="card">
     <div class="card-body">
+        @if (session('message'))   
+            <div class="alert alert-success alert-dismissible show fade">
+                <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                    <span>×</span>
+                </button>
+                {{ session('message') }}
+                </div>
+            </div>            
+        @endif
         {{-- <a href="" class="btn btn-primary"><i class="fas fa-plush"></i> Tambah Data</a> --}}
         <hr>
         <table class="table table-striped" id="myTable">
@@ -56,7 +66,7 @@
                     </td>
                     <td>
                         {{-- <a href="" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a> --}}
-                        <a href="" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></a>
+                        <a href="{{route('editlPengaduan.user', $item->id_pengaduan)}}" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></a>
                         <a href="{{route('detailPengaduan.user', $item->id_pengaduan)}}" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>                    

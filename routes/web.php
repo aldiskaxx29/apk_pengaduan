@@ -91,6 +91,7 @@ Route::group(['middleware' => ['cekLogin']], function(){
     Route::get('dataUser','Petugas\DataUserController@index');
     Route::get('dataUser_petugas','Petugas\DataUserController@petugas')->name('dataUser_petugas');    
     Route::post('inputUser_petugas','Petugas\DataUserController@inputPetugas');
+    Route::get('detailUser_petugas/{id}','Petugas\DataUserController@detail');
     Route::post('editUser_petugas/{id}','Petugas\DataUserController@editPetugas');
     Route::get('hapusUser_petugas/{id}','Petugas\DataUserController@hapusPetugas');
 
@@ -118,6 +119,8 @@ Route::group(['middleware' => ['cekLogin']], function(){
 
     Route::get('status_Pengaduan','User\StatusPengaduanController@index')->name('status_Pengaduan.user');
     Route::get('detailPengaduan/{id}/detail','User\StatusPengaduanController@show')->name('detailPengaduan.user');
+    Route::get('editPengaduan/{id}/edit','User\StatusPengaduanController@edit')->name('editlPengaduan.user');
+    Route::post('updatePengaduan/{id}/update','User\StatusPengaduanController@update')->name('updatePengaduan.user');
 
     Route::get('histortPengaduan','User\HistoryController@index')->name('history_Pengaduan.user');
 
