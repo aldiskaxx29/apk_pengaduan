@@ -31,6 +31,9 @@
                         <th>Alamat</th>
                         <td>: {{$status->alamat}}</td>
                     </tr>
+                    <tr>
+                        <th><a href="{{url('status_Pengaduan')}}" class="btn btn-light">Back</a></th>
+                    </tr>
                 </table>
             </div>    
             <div class="col-md-6">
@@ -59,7 +62,11 @@
                     </tr>
                     <tr>
                         <th>Bukti Kejadian</th>
-                        <td>: <img src="/image/{{$status->gambar}}" alt="" width="100px"></td>
+                        <td>: 
+                            <img src="/image/{{$status->gambar}}" alt="" width="100px">
+                            <img src="/image/{{$status->gambar2}}" alt="" width="100px">
+                            <img src="/image/{{$status->gambar3}}" alt="" width="100px">
+                        </td>
                     </tr>
                 </table>
             </div>    

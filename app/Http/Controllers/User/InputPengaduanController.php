@@ -54,8 +54,8 @@ class InputPengaduanController extends Controller
             'alamat'          => 'required',
             'keterangan'      => 'required',
             'gambar'          => 'mimes:jpeg,png,jpg|max:2048',
-            'gambar2'          => 'mimes:jpeg,png,jpg|max:2048',
-            'gambar3'          => 'mimes:jpeg,png,jpg|max:2048',
+            'gambar2'         => 'mimes:jpeg,png,jpg|max:2048',
+            'gambar3'         => 'mimes:jpeg,png,jpg|max:2048',
             'tanggal_kejadian'=> 'required',
             'tempat_kejadian' => 'required',
         ]);
@@ -70,16 +70,23 @@ class InputPengaduanController extends Controller
             $imgName = $request->gambar->getClientOriginalName() . '-' .time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('image'), $imgName);
         }
+        else{
+            $imgName = ' ';
+        }
 
         if(!empty($request->gambar2)){
             $imgName2 = $request->gambar2->getClientOriginalName() . '-' .time() . '.' . $request->gambar2->extension();
             $request->gambar2->move(public_path('image'), $imgName2);
+        }
+        else{
+            $imgName2 = ' ';
         }
 
         if(!empty($request->gambar3)){
             $imgName3 = $request->gambar3->getClientOriginalName() . '-' .time() . '.' . $request->gambar3->extension();
             $request->gambar3->move(public_path('image'), $imgName3);
         }
+        $imgName3 = ' ';
         
 
 

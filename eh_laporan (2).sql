@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2021 at 09:37 AM
+-- Generation Time: Sep 13, 2021 at 05:42 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -93,16 +93,20 @@ CREATE TABLE `tb_gambar` (
 
 CREATE TABLE `tb_pengaduan` (
   `id_pengaduan` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `tempat` varchar(30) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `jenis_kelamin` enum('L','P') NOT NULL,
+  `jenis_kelamin` varchar(15) NOT NULL,
   `pekerjaan` varchar(30) NOT NULL,
   `kewarganegaraan` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `keterangan` text NOT NULL,
-  `gambar` varchar(125) DEFAULT NULL,
+  `gambar` varchar(225) DEFAULT NULL,
+  `gambar2` varchar(125) DEFAULT NULL,
+  `gambar3` varchar(125) DEFAULT NULL,
   `status` int(1) NOT NULL,
+  `tanggal_kejadian` date NOT NULL,
+  `tempat_kejadian` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,9 +115,11 @@ CREATE TABLE `tb_pengaduan` (
 -- Dumping data for table `tb_pengaduan`
 --
 
-INSERT INTO `tb_pengaduan` (`id_pengaduan`, `nama`, `tempat`, `tanggal_lahir`, `jenis_kelamin`, `pekerjaan`, `kewarganegaraan`, `alamat`, `keterangan`, `gambar`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'lutfi aulia', 'Tangerang', '2021-09-01', 'P', 'web developer', 'indonesia', 'tangerang', 'ada', 'Instagram-Logo.wine.png-1630480494.png', 1, '2021-09-01 07:14:54', '2021-09-01 07:14:54'),
-(2, 'dila', 'Tangerang', '2021-09-03', 'P', 'web developer', 'indonesia', 'pauhaji tangerang', 'kehilangan dompet dan masih banyak lagi dah pokonya', 'download.jpg-1630555057.jpg', 1, '2021-09-02 03:57:37', '2021-09-02 03:57:37');
+INSERT INTO `tb_pengaduan` (`id_pengaduan`, `user_id`, `tempat`, `tanggal_lahir`, `jenis_kelamin`, `pekerjaan`, `kewarganegaraan`, `alamat`, `keterangan`, `gambar`, `gambar2`, `gambar3`, `status`, `tanggal_kejadian`, `tempat_kejadian`, `created_at`, `updated_at`) VALUES
+(2, 4, 'Tangerang', '2021-09-03', 'Perempuan', 'web developer', 'indonesia', 'pauhaji tangerang', 'kehilangan dompet dan masih banyak lagi dah pokonya', 'download.jpg-1630555057.jpg', NULL, NULL, 1, '2021-09-02', 'dekat', '2021-09-02 03:57:37', '2021-09-02 03:57:37'),
+(3, 5, 'Tangerang', '2021-09-06', 'Laki - laki', 'buruh tani', 'indonesia', 'sepatan timur kabupaten tangerang', 'kehilangan beberapa padi dan yang lainya', 'Sampel+KPI+Bidang+IT+–+Information+Technology.jpg-1630822727.jpg', NULL, NULL, 1, '2021-09-05', 'sama', '2021-09-05 06:18:47', '2021-09-05 06:18:47'),
+(5, 4, 'tangerang', '2021-09-09', 'Laki - laki', 'buruh', 'indonesia', 'tangerang', 'kehilangan bou', 'pa1.png-1631247764.png', 'pa.png-1631247764.png', 'logo_polri.png-1631247764.png', 0, '2021-09-09', 'kedaung sepatan', '2021-09-10 04:22:44', '2021-09-10 04:22:44'),
+(6, 5, 'Tangerang 1', '2021-09-20', 'Laki - laki', 'web developer', 'indonesia', 'tanah merah', 'kehilangan hati', 'ss.jpg-1631438732.jpg', 'aldi.png-1631438732.png', ' ', 0, '2021-09-12', 'pasar', '2021-09-12 09:25:32', '2021-09-12 09:25:32');
 
 -- --------------------------------------------------------
 
@@ -154,7 +160,11 @@ INSERT INTO `users` (`id`, `nama_lengkap`, `username`, `password`, `role_user`, 
 (4, 'dila', 'dila02', '$2y$10$2XA2/86HNv0oxRLtjo0Qt.fXYnxf5BcLvKqRsdvMfZBXdVJQ.jALm', 'USER', NULL, NULL, NULL),
 (5, 'verdian maulana', 'verdian', '$2y$10$idkupb6QGAVBzTWcR9ynDeXyEe8k13pn4UTzKCcuL4/7olE4JL17K', 'USER', NULL, NULL, NULL),
 (6, 'aldo skut', 'ada', '$2y$10$...x9B8pgYsqkdp4Sh5Ib.2bTPWXjv4FEiksMPZ3WikBUL9W9tbsi', 'USER', NULL, NULL, NULL),
-(7, 'ada', 'adad', '$2y$10$WcT.1vBSYv3lO/iapIacGO.JWgGkdtIHZVHN7chyVKVVDYE6qktfa', 'USER', NULL, NULL, NULL);
+(7, 'ada', 'adad', '$2y$10$WcT.1vBSYv3lO/iapIacGO.JWgGkdtIHZVHN7chyVKVVDYE6qktfa', 'USER', NULL, NULL, NULL),
+(8, 'muhamad aldo skuy', 'aldo29', '$2y$10$KeEmtDEXFDY2Wou29dO1Due5JCf2PH/guGXAUCH/O9aB6jHQE4eZC', 'PETUGAS', NULL, NULL, NULL),
+(10, 'dua', 'satu', '$2y$10$TcT3qtgWZ1gk.84kyxLFU.Dn0kaESTqE.PyvU6CXfsGc0LZG/b94.', 'PETUGAS', NULL, NULL, NULL),
+(11, 'siti lutfiah', 'sa', '$2y$10$4aZnFLaFqKCqkjEmgVl4MudumrX8y8vrfh7daBwBwvWwbwr6GXyuO', 'PETUGAS', NULL, NULL, NULL),
+(13, 'dua', 'dua', '$2y$10$1pEdd1x/SdmylFRgfzcUaOSvFojCRbQObthrRcus7i4o.SnM80N2C', 'PETUGAS', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -229,7 +239,7 @@ ALTER TABLE `tb_gambar`
 -- AUTO_INCREMENT for table `tb_pengaduan`
 --
 ALTER TABLE `tb_pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_status`
@@ -241,7 +251,7 @@ ALTER TABLE `tb_status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
