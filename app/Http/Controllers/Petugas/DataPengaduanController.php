@@ -15,9 +15,12 @@ class DataPengaduanController extends Controller
      */
     public function index()
     {
+
+        $notif = DB::table('tb_pengaduan')->where('status',0)->count();             
+
         // $pengaduan = DB::table('tb_pengaduan')->get();
         $pengaduan = DB::table('tb_pengaduan')->join('users','tb_pengaduan.user_id','=','users.id')->get();
-        return view('petugas.data_pengaduan.index', compact('pengaduan'));
+        return view('petugas.data_pengaduan.index', compact('pengaduan','notif'));
     }
 
     /**
@@ -116,9 +119,25 @@ class DataPengaduanController extends Controller
     }
 
     public function acc(Request $request, $id){
+        // dd($request->all());
         DB::table('tb_pengaduan')->where('id_pengaduan',$id)->update([
-            'status' => $request->status
+            'status' => $request->status,
         ]);
-        return redirect('dataPengaduan')->with('message','Data Berhasil Di Cek');
+        return redirect('dataPengaduan')->with('message','Data Berhasil Di ACC');
     }
+
+    public function terima(Request $request, $id){
+        DB::table('tb_pengaduan')->where('id_pengaduan', $id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect('dataPengaduan')->with('message','Data Berhasil Di Terima');
+    }
+
+    public function tolak(Request $request, $id){
+        DB::table('tb_pengaduan')->where('id_pengaduan', $id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect('dataPengaduan')->with('message','Data Berhasil Di Tolak');
+    }
+
 }

@@ -87,6 +87,8 @@ Route::group(['middleware' => ['cekLogin']], function(){
     Route::post('dataPengaduan/update/{id}','Petugas\DataPengaduanController@update')->name('dataPengaduan.update');
     Route::get('dataPengaduan/hapus/{id}','Petugas\DataPengaduanController@destroy')->name('dataPengaduan.hapus');
     Route::post('dataPengaduan/acc/{id}','Petugas\DataPengaduanController@acc')->name('dataPengaduan.acc');
+    Route::post('dataPengaduan/terima/{id}','Petugas\DataPengaduanController@terima')->name('dataPengaduan.terima');
+    Route::post('dataPengaduan/tolak/{id}','Petugas\DataPengaduanController@tolak')->name('dataPengaduan.tolak');
 
     Route::get('dataUser','Petugas\DataUserController@index');
     Route::get('dataUser_petugas','Petugas\DataUserController@petugas')->name('dataUser_petugas');    

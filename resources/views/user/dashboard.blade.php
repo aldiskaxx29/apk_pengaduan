@@ -49,7 +49,8 @@
           </div>
           <div class="card-body">
             @php
-               $data = DB::table('tb_pengaduan')->where('status',0)->count();
+              $id = Auth::user()->id;
+               $data = DB::table('tb_pengaduan')->where('status',1)->where('user_id',$id)->count();
                echo $data;
             @endphp
           </div>

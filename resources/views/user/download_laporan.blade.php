@@ -45,7 +45,7 @@
     </div>
     <div class="conten" style="text-align: left;">
         <p>-------- Yang bertanda tangan dibawah ini menerangkan bahwa pada hari {{$today}} Tanggal {{date('Y/m/d')}}  sekira 
-        jam {{date('h:i:s')}} Wib, Telah datang ke polsek Mauk , Mengaku Bernama: ----------------------------------------------------</p>
+        jam {{date('G:i:s')}} Wib, Telah datang ke polsek Mauk , Mengaku Bernama: ----------------------------------------------------</p>
 
         <table style="margin-left: 80px;">
             <tr>

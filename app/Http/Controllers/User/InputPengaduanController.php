@@ -86,7 +86,10 @@ class InputPengaduanController extends Controller
             $imgName3 = $request->gambar3->getClientOriginalName() . '-' .time() . '.' . $request->gambar3->extension();
             $request->gambar3->move(public_path('image'), $imgName3);
         }
-        $imgName3 = ' ';
+        else{
+            $imgName3 = ' ';
+        }
+       
         
 
 
